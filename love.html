@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>王海波个人主页</title>
+<meta name="keywords" content="前端工程师、王海波个人主页" />
+<meta name="description" content="前端工程师，王海波个人主页" />
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/common.css?v=915">
+ <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/html5shiv.js"></script>
+<![endif]-->
+<!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <!-- Demo styles -->
+    <style>
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    </style>
+</head>
+<body>
+	<!-- html strat -->
+	<div class="swiper-container">
+    	<section class="f-top"><img class="ft-logo" src="img/logo.png" /><a class="menu-el" href="javascript:;" /></a></section>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/001.png" />
+            </div>
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/002.png" />
+            </div>
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/003.png" />
+            </div>
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/004.png" />
+            </div>
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/005.png" />
+            </div>
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/006.png" />
+            </div>
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/007.png" />
+            </div>
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/008.png" />
+            </div>
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/009.png" />
+            </div>
+            <div class="swiper-slide">
+            	<img class="m-img" src="img/love/010.png" />
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <section class="f-bot"><img class="fb-next" src="img/next.png" /><a class="fb-e" href="javascript:;"><img src="img/e.png" /></a></section>
+    </div>
+
+    <!-- 点击目录 弹层 -->
+    <section class="tm-left-overlay" style="display:none;"></section>
+    <section class="tm-left-dialog" style="">
+        <!--<h4 id="tlDiaClose" class="tld-title"><i class="bsm-next-icon"></i>关闭面板</h4>  -->
+        <div class="tld-text" style="">
+        
+            <div class="left-menu-tpl">
+                <a href="index.html" class="lm-title">首页<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+                <a href="work.html" class="lm-title">工作室<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+                <a href="/blog" class="lm-title">博客<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+                <a href="love.html" class="lm-title">我们<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+                <a href="self.html" class="lm-title">经历<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+            </div>
+           
+        </div>
+    </section>
+	<!-- html end -->
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+	<!-- Swiper JS -->
+    <script src="js/swiper.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        //paginationHide:true,
+        //pagination: '.swiper-pagination',
+        //paginationClickable: true,
+        direction: 'vertical'
+    });
+    </script>
+</body>
+</html>

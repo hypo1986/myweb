@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>koa2框架介绍及搭建 | 王海波的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="想学会某一项新的技能，最好的方法就是边看文档，边亲自动手实践。亲手搭建基础实例代码 github 一、koa简介Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致力于成为 web 应用和 API 开发领域中的一个更小、更富有表现力、更健壮的基石。 通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理。 Koa 并没有捆绑任何中间件， 而是提供了一套">
+<meta name="keywords" content="es6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="koa2框架介绍及搭建">
+<meta property="og:url" content="http://www.hypo1986.com/blog/2019/09/18/2019-09-18-koa2/index.html">
+<meta property="og:site_name" content="王海波的博客">
+<meta property="og:description" content="想学会某一项新的技能，最好的方法就是边看文档，边亲自动手实践。亲手搭建基础实例代码 github 一、koa简介Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致力于成为 web 应用和 API 开发领域中的一个更小、更富有表现力、更健壮的基石。 通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理。 Koa 并没有捆绑任何中间件， 而是提供了一套">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-05T05:26:55.015Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="koa2框架介绍及搭建">
+<meta name="twitter:description" content="想学会某一项新的技能，最好的方法就是边看文档，边亲自动手实践。亲手搭建基础实例代码 github 一、koa简介Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致力于成为 web 应用和 API 开发领域中的一个更小、更富有表现力、更健壮的基石。 通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理。 Koa 并没有捆绑任何中间件， 而是提供了一套">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="王海波的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">王海波的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">人生无难易，为之则易</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">首页</a>
+        
+          <a class="main-nav-link" href="/blog/archives">归档</a>
+        
+          <a class="main-nav-link" href="/blog/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.hypo1986.com/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2019-09-18-koa2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2019/09/18/2019-09-18-koa2/" class="article-date">
+  <time datetime="2019-09-18T08:06:59.000Z" itemprop="datePublished">2019-09-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/前端/">前端</a>
+  </div>
+
+    
+  <div class="article-category">
+    <span id="/blog/2019/09/18/2019-09-18-koa2/" class="leancloud-visitors article-category-link" data-flag-title="koa2框架介绍及搭建">
+      <em class="post-meta-item-text">阅读量 </em>
+      <i class="leancloud-visitors-count"></i>
+    </span>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      koa2框架介绍及搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>想学会某一项新的技能，最好的方法就是边看文档，边亲自动手实践。<br>亲手搭建基础实例代码 <a href="https://github.com/hypo1986/koa2-demo" target="_blank" rel="noopener">github</a></p>
+<h1 id="一、koa简介"><a href="#一、koa简介" class="headerlink" title="一、koa简介"></a>一、koa简介</h1><p>Koa 是一个新的 web 框架，由 Express 幕后的原班人马打造， 致力于成为 web 应用和 API 开发领域中的一个更小、更富有表现力、更健壮的基石。 通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理。 Koa 并没有捆绑任何中间件， 而是提供了一套优雅的方法，帮助您快速而愉快地编写服务端应用程序。</p>
+<h1 id="二、koa2的优势"><a href="#二、koa2的优势" class="headerlink" title="二、koa2的优势"></a>二、koa2的优势</h1><a id="more"></a>
+<h4 id="1-express"><a href="#1-express" class="headerlink" title="1. express"></a>1. express</h4><p>虽然Express的API很简单，但是它是基于ES5的语法，要实现异步代码，只有一个方法：回调。如果异步嵌套层次过多，代码写起来就非常难看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">app.get(&apos;/test&apos;, function (req, res) &#123;</span><br><span class="line">    fs.readFile(&apos;/file1&apos;, function (err, data) &#123;</span><br><span class="line">        if (err) &#123;</span><br><span class="line">            res.status(500).send(&apos;read file1 error&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">        fs.readFile(&apos;/file2&apos;, function (err, data) &#123;</span><br><span class="line">            if (err) &#123;</span><br><span class="line">                res.status(500).send(&apos;read file2 error&apos;);</span><br><span class="line">            &#125;</span><br><span class="line">            res.type(&apos;text/plain&apos;);</span><br><span class="line">            res.send(data);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-koa-1-0"><a href="#2-koa-1-0" class="headerlink" title="2. koa 1.0"></a>2. koa 1.0</h4><p>随着新版Node.js开始支持ES6，Express的团队又基于ES6的generator重新编写了下一代web框架koa。和Express相比，koa 1.0使用generator实现异步，代码看起来像同步的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var koa = require(&apos;koa&apos;);</span><br><span class="line">var app = koa();</span><br><span class="line"></span><br><span class="line">app.use(&apos;/test&apos;, function *() &#123;</span><br><span class="line">    yield doReadFile1();</span><br><span class="line">    var data = yield doReadFile2();</span><br><span class="line">    this.body = data;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(3000);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-koa-2-0"><a href="#3-koa-2-0" class="headerlink" title="3. koa 2.0"></a>3. koa 2.0</h4><p>随着ES7引入了新的语法糖async和await，JavaScript未来标准的异步代码是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">async function () &#123;</span><br><span class="line">    var data = await fs.read(&apos;/file1&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>koa团队并没有止步于koa 1.0，他们非常超前地基于ES7开发了koa2。koa2的代码看上去像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">    await next();</span><br><span class="line">    var data = await doReadFile();</span><br><span class="line">    ctx.response.type = &apos;text/plain&apos;;</span><br><span class="line">    ctx.response.body = data;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-中间件的执行顺序"><a href="#4-中间件的执行顺序" class="headerlink" title="4. 中间件的执行顺序"></a>4. 中间件的执行顺序</h4><p>koa的中间件是由generator组成的，这决定了中间件的执行顺序。<br>Express的中间件是顺序执行，从第一个中间件执行到最后一个中间件，发出响应。</p>
+<p>koa是从第一个中间件开始执行，遇到<code>next</code>进入下一个中间件，一直执行到最后一个中间件，在逆序，执行上一个中间件<code>next</code>之后的代码，一直到第一个中间件执行结束才发出响应。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">const one = (ctx, next) =&gt; &#123;</span><br><span class="line">  console.log(&apos;&gt;&gt; one&apos;);</span><br><span class="line">  next();</span><br><span class="line">  console.log(&apos;&lt;&lt; one&apos;);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const two = (ctx, next) =&gt; &#123;</span><br><span class="line">  console.log(&apos;&gt;&gt; two&apos;);</span><br><span class="line">  next();</span><br><span class="line">  console.log(&apos;&lt;&lt; two&apos;);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const three = (ctx, next) =&gt; &#123;</span><br><span class="line">  console.log(&apos;&gt;&gt; three&apos;);</span><br><span class="line">  next();</span><br><span class="line">  console.log(&apos;&lt;&lt; three&apos;);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">app.use(one);</span><br><span class="line">app.use(two);</span><br><span class="line">app.use(three);</span><br><span class="line"> </span><br><span class="line">输出结果：</span><br><span class="line">&gt;&gt; one</span><br><span class="line">&gt;&gt; two</span><br><span class="line">&gt;&gt; three</span><br><span class="line">&lt;&lt; three</span><br><span class="line">&lt;&lt; two</span><br><span class="line">&lt;&lt; one</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、koa2入门及搭建"><a href="#三、koa2入门及搭建" class="headerlink" title="三、koa2入门及搭建"></a>三、koa2入门及搭建</h1><h4 id="1-Context"><a href="#1-Context" class="headerlink" title="1. Context"></a>1. Context</h4><p>Context封装了node中的request和response。</p>
+<p><a href="mailto:koa@1.x" target="_blank" rel="noopener">koa@1.x</a>使用this引用Context对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(function *()&#123;</span><br><span class="line">  this.body = &apos;Hello World&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><a href="mailto:koa@2.x" target="_blank" rel="noopener">koa@2.x</a>中使用ctx来访问Context对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  await next();</span><br><span class="line">  ctx.body = &apos;Hello World&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建koa2工程"><a href="#2-创建koa2工程" class="headerlink" title="2. 创建koa2工程"></a>2. 创建koa2工程</h4><p>首先，我们创建一个目录hello-koa并作为工程目录用VS Code打开。然后，我们创建app.js，输入以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 导入koa，和koa 1.x不同，在koa2中，我们导入的是一个class，因此用大写的Koa表示:</span><br><span class="line">const Koa = require(&apos;koa&apos;);</span><br><span class="line"></span><br><span class="line">// 创建一个Koa对象表示web app本身:</span><br><span class="line">const app = new Koa();</span><br><span class="line"></span><br><span class="line">// 对于任何请求，app将调用该异步函数处理请求：</span><br><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  await next();</span><br><span class="line">  ctx.response.type = &apos;text/html&apos;;</span><br><span class="line">  ctx.response.body = &apos;&lt;h1&gt;Hello, koa2!&lt;/h1&gt;&apos;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 在端口3000监听:</span><br><span class="line">app.listen(3000);</span><br><span class="line">console.log(&apos;app started at port 3000...&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>对于每一个http请求，koa将调用我们传入的异步函数来处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">async (ctx, next) =&gt; &#123;</span><br><span class="line">  await next();</span><br><span class="line">  // 设置response的Content-Type:</span><br><span class="line">  ctx.response.type = &apos;text/html&apos;;</span><br><span class="line">  // 设置response的内容:</span><br><span class="line">  ctx.response.body = &apos;&lt;h1&gt;Hello, koa2!&lt;/h1&gt;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，参数ctx是由koa传入的封装了request和response的变量，我们可以通过它访问request和response，next是koa传入的将要处理的下一个异步函数。</p>
+<p>上面的异步函数中，我们首先用await next();处理下一个异步函数，然后，设置response的Content-Type和内容。</p>
+<p>由async标记的函数称为异步函数，在异步函数中，可以用await调用另一个异步函数，这两个关键字将在ES7中引入。</p>
+<p>现在我们遇到第一个问题：koa这个包怎么装，app.js才能正常导入它？</p>
+<p>在hello-koa这个目录下创建一个package.json，这个文件描述了我们的hello-koa工程会用到哪些包。完整的文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;hello-koa2&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;Hello Koa 2 example with async&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;app.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">      &quot;start&quot;: &quot;node app.js&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;keywords&quot;: [</span><br><span class="line">      &quot;koa&quot;,</span><br><span class="line">      &quot;async&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;author&quot;: &quot;&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;Apache-2.0&quot;,</span><br><span class="line">  &quot;repository&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;git&quot;,</span><br><span class="line">      &quot;url&quot;: &quot;&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">      &quot;koa&quot;: &quot;2.0.0&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们在hello-koa目录下执行npm install就可以把所需包以及依赖包一次性全部装好。<br>现在，我们的工程结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hello-koa/</span><br><span class="line">|</span><br><span class="line">+- app.js &lt;-- 使用koa的js</span><br><span class="line">|</span><br><span class="line">+- package.json &lt;-- 项目描述文件</span><br><span class="line">|</span><br><span class="line">+- node_modules/ &lt;-- npm安装的所有依赖包</span><br></pre></td></tr></table></figure>
+
+<p>在控制台执行 npm run start,我们打开浏览器，输入<a href="http://localhost:3000，即可看到效果：" target="_blank" rel="noopener">http://localhost:3000，即可看到效果：</a></p>
+<h4 id="3-koa-middleware"><a href="#3-koa-middleware" class="headerlink" title="3. koa middleware"></a>3. koa middleware</h4><p>让我们再仔细看看koa的执行逻辑。核心代码是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  await next();</span><br><span class="line">  ctx.response.type = &apos;text/html&apos;;</span><br><span class="line">  ctx.response.body = &apos;&lt;h1&gt;Hello, koa2!&lt;/h1&gt;&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>每收到一个http请求，koa就会调用通过app.use()注册的async函数，并传入ctx和next参数。</p>
+<p>我们可以对ctx操作，并设置返回内容。但是为什么要调用await next()？</p>
+<p>原因是koa把很多async函数组成一个处理链，每个async函数都可以做一些自己的事情，然后用await next()来调用下一个async函数。我们把每个async函数称为middleware，这些middleware可以组合起来，完成很多有用的功能。</p>
+<p>例如，可以用以下3个middleware组成处理链，依次打印日志，记录处理时间，输出HTML：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  console.log(`$&#123;ctx.request.method&#125; $&#123;ctx.request.url&#125;`); // 打印URL</span><br><span class="line">  await next(); // 调用下一个middleware</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  const start = new Date().getTime(); // 当前时间</span><br><span class="line">  await next(); // 调用下一个middleware</span><br><span class="line">  const ms = new Date().getTime() - start; // 耗费时间</span><br><span class="line">  console.log(`Time: $&#123;ms&#125;ms`); // 打印耗费时间</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  await next();</span><br><span class="line">  ctx.response.type = &apos;text/html&apos;;</span><br><span class="line">  ctx.response.body = &apos;&lt;h1&gt;Hello, koa2!&lt;/h1&gt;&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>middleware的顺序很重要，也就是调用app.use()的顺序决定了middleware的顺序。</p>
+<p>此外，如果一个middleware没有调用await next()，会怎么办？答案是后续的middleware将不再执行了。这种情况也很常见，例如，一个检测用户权限的middleware可以决定是否继续处理请求，还是直接返回403错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  if (await checkUserPermission(ctx)) &#123;</span><br><span class="line">    await next();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    ctx.response.status = 403;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>理解了middleware，我们就已经会用koa了！</p>
+<p>最后注意ctx对象有一些简写的方法，例如ctx.url相当于ctx.request.url，ctx.type相当于ctx.response.type。</p>
+<h1 id="四、处理URL"><a href="#四、处理URL" class="headerlink" title="四、处理URL"></a>四、处理URL</h1><p>在hello-koa工程中，我们处理http请求一律返回相同的HTML，这样虽然非常简单，但是用浏览器一测，随便输入任何URL都会返回相同的网页。<br>正常情况下，我们应该对不同的URL调用不同的处理函数，这样才能返回不同的结果。例如像这样写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  if (ctx.request.path === &apos;/&apos;) &#123;</span><br><span class="line">    ctx.response.body = &apos;index page&apos;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    await next();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  if (ctx.request.path === &apos;/test&apos;) &#123;</span><br><span class="line">    ctx.response.body = &apos;TEST page&apos;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    await next();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  if (ctx.request.path === &apos;/error&apos;) &#123;</span><br><span class="line">    ctx.response.body = &apos;ERROR page&apos;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    await next();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这么写是可以运行的，但是好像有点蠢。</p>
+<p>应该有一个能集中处理URL的middleware，它根据不同的URL调用不同的处理函数，这样，我们才能专心为每个URL编写处理函数。</p>
+<h4 id="1-koa-router"><a href="#1-koa-router" class="headerlink" title="1. koa-router"></a>1. koa-router</h4><p>为了处理URL，我们需要引入koa-router这个middleware，让它负责处理URL映射。</p>
+<p>我们把上一节的hello-koa工程复制一份，重命名为url-koa。</p>
+<p>先在package.json中添加依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;koa-router&quot;: &quot;7.0.0&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后用npm install安装。</p>
+<p>接下来，我们修改app.js，使用koa-router来处理URL：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">const Koa = require(&apos;koa&apos;);</span><br><span class="line"></span><br><span class="line">// 注意require(&apos;koa-router&apos;)返回的是函数:</span><br><span class="line">const router = require(&apos;koa-router&apos;)();</span><br><span class="line"></span><br><span class="line">const app = new Koa();</span><br><span class="line"></span><br><span class="line">// log request URL:</span><br><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">  console.log(`Process $&#123;ctx.request.method&#125; $&#123;ctx.request.url&#125;...`);</span><br><span class="line">  await next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// add url-route:</span><br><span class="line">router.get(&apos;/hello/:name&apos;, async (ctx, next) =&gt; &#123;</span><br><span class="line">  var name = ctx.params.name;</span><br><span class="line">  ctx.response.body = `&lt;h1&gt;Hello, $&#123;name&#125;!&lt;/h1&gt;`;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(&apos;/&apos;, async (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.response.body = &apos;&lt;h1&gt;Index&lt;/h1&gt;&apos;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// add router middleware:</span><br><span class="line">app.use(router.routes());</span><br><span class="line"></span><br><span class="line">app.listen(3000);</span><br><span class="line">console.log(&apos;app started at port 3000...&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们使用router.get(‘/path’, async fn)来注册一个GET请求。可以在请求路径中使用带变量的/hello/:name，变量可以通过ctx.params.name访问。</p>
+<p>再运行app.js，我们就可以测试不同的URL。</p>
+<h4 id="2-处理post请求"><a href="#2-处理post请求" class="headerlink" title="2. 处理post请求"></a>2. 处理post请求</h4><p>用router.get(‘/path’, async fn)处理的是get请求。如果要处理post请求，可以用router.post(‘/path’, async fn)。</p>
+<p>用post请求处理URL时，我们会遇到一个问题：post请求通常会发送一个表单，或者JSON，它作为request的body发送，但无论是Node.js提供的原始request对象，还是koa提供的request对象，都不提供解析request的body的功能！</p>
+<p>所以，我们又需要引入另一个middleware来解析原始request请求，然后，把解析后的参数，绑定到ctx.request.body中。</p>
+<p>koa-bodyparser就是用来干这个活的。</p>
+<p>我们在package.json中添加依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;koa-bodyparser&quot;: &quot;3.2.0&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后使用npm install安装。</p>
+<p>下面，修改app.js，引入koa-bodyparser：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const bodyParser = require(&apos;koa-bodyparser&apos;);</span><br></pre></td></tr></table></figure>
+
+<p>在合适的位置加上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(bodyParser());</span><br></pre></td></tr></table></figure>
+
+<p>由于middleware的顺序很重要，这个koa-bodyparser必须在router之前被注册到app对象上。</p>
+<p>现在我们就可以处理post请求了。写一个简单的登录表单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">router.get(&apos;/&apos;, async (ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.response.body = `&lt;h1&gt;Index&lt;/h1&gt;</span><br><span class="line">      &lt;form action=&quot;/signin&quot; method=&quot;post&quot;&gt;</span><br><span class="line">          &lt;p&gt;Name: &lt;input name=&quot;name&quot; value=&quot;koa&quot;&gt;&lt;/p&gt;</span><br><span class="line">          &lt;p&gt;Password: &lt;input name=&quot;password&quot; type=&quot;password&quot;&gt;&lt;/p&gt;</span><br><span class="line">          &lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;&lt;/p&gt;</span><br><span class="line">      &lt;/form&gt;`;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.post(&apos;/signin&apos;, async (ctx, next) =&gt; &#123;</span><br><span class="line">  var</span><br><span class="line">    name = ctx.request.body.name || &apos;&apos;,</span><br><span class="line">    password = ctx.request.body.password || &apos;&apos;;</span><br><span class="line">  console.log(`signin with name: $&#123;name&#125;, password: $&#123;password&#125;`);</span><br><span class="line">  if (name === &apos;koa&apos; &amp;&amp; password === &apos;12345&apos;) &#123;</span><br><span class="line">    ctx.response.body = `&lt;h1&gt;Welcome, $&#123;name&#125;!&lt;/h1&gt;`;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    ctx.response.body = `&lt;h1&gt;Login failed!&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;&lt;a href=&quot;/&quot;&gt;Try again&lt;/a&gt;&lt;/p&gt;`;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>注意到我们用var name = ctx.request.body.name || ‘’拿到表单的name字段，如果该字段不存在，默认值设置为’’。</p>
+<p>类似的，put、delete、head请求也可以由router处理。</p>
+<h4 id="3-重构"><a href="#3-重构" class="headerlink" title="3. 重构"></a>3. 重构</h4><p>现在，我们已经可以处理不同的URL了，但是看看app.js，总觉得还是有点不对劲。</p>
+<p>所有的URL处理函数都放到app.js里显得很乱，而且，每加一个URL，就需要修改app.js。随着URL越来越多，app.js就会越来越长。</p>
+<p>如果能把URL处理函数集中到某个js文件，或者某几个js文件中就好了，然后让app.js自动导入所有处理URL的函数。这样，代码一分离，逻辑就显得清楚了。最好是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+- controllers/</span><br><span class="line">|  |</span><br><span class="line">|  +- login.js &lt;-- 处理login相关URL</span><br><span class="line">|  |</span><br><span class="line">|  +- users.js &lt;-- 处理用户管理相关URL</span><br><span class="line">|</span><br><span class="line">+- app.js &lt;-- 使用koa的js</span><br><span class="line">|</span><br><span class="line">+- package.json &lt;-- 项目描述文件</span><br><span class="line">|</span><br><span class="line">+- node_modules/ &lt;-- npm安装的所有依赖包</span><br></pre></td></tr></table></figure>
+
+<p>我们先在controllers目录下编写index.js：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var fn_index = async (ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.response.body = `&lt;h1&gt;Index&lt;/h1&gt;</span><br><span class="line">      &lt;form action=&quot;/signin&quot; method=&quot;post&quot;&gt;</span><br><span class="line">          &lt;p&gt;Name: &lt;input name=&quot;name&quot; value=&quot;koa&quot;&gt;&lt;/p&gt;</span><br><span class="line">          &lt;p&gt;Password: &lt;input name=&quot;password&quot; type=&quot;password&quot;&gt;&lt;/p&gt;</span><br><span class="line">          &lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;&lt;/p&gt;</span><br><span class="line">      &lt;/form&gt;`;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fn_signin = async (ctx, next) =&gt; &#123;</span><br><span class="line">  var</span><br><span class="line">    name = ctx.request.body.name || &apos;&apos;,</span><br><span class="line">    password = ctx.request.body.password || &apos;&apos;;</span><br><span class="line">  console.log(`signin with name: $&#123;name&#125;, password: $&#123;password&#125;`);</span><br><span class="line">  if (name === &apos;koa&apos; &amp;&amp; password === &apos;12345&apos;) &#123;</span><br><span class="line">    ctx.response.body = `&lt;h1&gt;Welcome, $&#123;name&#125;!&lt;/h1&gt;`;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    ctx.response.body = `&lt;h1&gt;Login failed!&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;&lt;a href=&quot;/&quot;&gt;Try again&lt;/a&gt;&lt;/p&gt;`;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  &apos;GET /&apos;: fn_index,</span><br><span class="line">  &apos;POST /signin&apos;: fn_signin</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这个index.js通过module.exports把两个URL处理函数暴露出来。</p>
+<p>类似的，hello.js把一个URL处理函数暴露出来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var fn_hello = async (ctx, next) =&gt; &#123;</span><br><span class="line">  var name = ctx.params.name;</span><br><span class="line">  ctx.response.body = `&lt;h1&gt;Hello, $&#123;name&#125;!&lt;/h1&gt;`;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  &apos;GET /hello/:name&apos;: fn_hello</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们修改app.js，让它自动扫描controllers目录，找到所有js文件，导入，然后注册每个URL：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// 先导入fs模块，然后用readdirSync列出文件</span><br><span class="line">// 这里可以用sync是因为启动时只运行一次，不存在性能问题:</span><br><span class="line">var files = fs.readdirSync(__dirname + &apos;/controllers&apos;);</span><br><span class="line"></span><br><span class="line">// 过滤出.js文件:</span><br><span class="line">var js_files = files.filter((f)=&gt;&#123;</span><br><span class="line">  return f.endsWith(&apos;.js&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 处理每个js文件:</span><br><span class="line">for (var f of js_files) &#123;</span><br><span class="line">  console.log(`process controller: $&#123;f&#125;...`);</span><br><span class="line">  // 导入js文件:</span><br><span class="line">  let mapping = require(__dirname + &apos;/controllers/&apos; + f);</span><br><span class="line">  for (var url in mapping) &#123;</span><br><span class="line">    if (url.startsWith(&apos;GET &apos;)) &#123;</span><br><span class="line">      // 如果url类似&quot;GET xxx&quot;:</span><br><span class="line">      var path = url.substring(4);</span><br><span class="line">      router.get(path, mapping[url]);</span><br><span class="line">      console.log(`register URL mapping: GET $&#123;path&#125;`);</span><br><span class="line">    &#125; else if (url.startsWith(&apos;POST &apos;)) &#123;</span><br><span class="line">      // 如果url类似&quot;POST xxx&quot;:</span><br><span class="line">      var path = url.substring(5);</span><br><span class="line">      router.post(path, mapping[url]);</span><br><span class="line">      console.log(`register URL mapping: POST $&#123;path&#125;`);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      // 无效的URL:</span><br><span class="line">      console.log(`invalid URL: $&#123;url&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果上面的大段代码看起来还是有点费劲，那就把它拆成更小单元的函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function addMapping(router, mapping) &#123;</span><br><span class="line">  for (var url in mapping) &#123;</span><br><span class="line">    if (url.startsWith(&apos;GET &apos;)) &#123;</span><br><span class="line">      var path = url.substring(4);</span><br><span class="line">      router.get(path, mapping[url]);</span><br><span class="line">      console.log(`register URL mapping: GET $&#123;path&#125;`);</span><br><span class="line">    &#125; else if (url.startsWith(&apos;POST &apos;)) &#123;</span><br><span class="line">      var path = url.substring(5);</span><br><span class="line">      router.post(path, mapping[url]);</span><br><span class="line">      console.log(`register URL mapping: POST $&#123;path&#125;`);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(`invalid URL: $&#123;url&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function addControllers(router) &#123;</span><br><span class="line">  var files = fs.readdirSync(__dirname + &apos;/controllers&apos;);</span><br><span class="line">  var js_files = files.filter((f) =&gt; &#123;</span><br><span class="line">      return f.endsWith(&apos;.js&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  for (var f of js_files) &#123;</span><br><span class="line">      console.log(`process controller: $&#123;f&#125;...`);</span><br><span class="line">      let mapping = require(__dirname + &apos;/controllers/&apos; + f);</span><br><span class="line">      addMapping(router, mapping);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addControllers(router);</span><br></pre></td></tr></table></figure>
+
+<p>确保每个函数功能非常简单，一眼能看明白，是代码可维护的关键。</p>
+<h4 id="Controller-Middleware"><a href="#Controller-Middleware" class="headerlink" title="Controller Middleware"></a>Controller Middleware</h4><p>最后，我们把扫描controllers目录和创建router的代码从app.js中提取出来，作为一个简单的middleware使用，命名为controller.js：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">function addMapping(router, mapping) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function addControllers(router, dir) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = function (dir) &#123;</span><br><span class="line">  let</span><br><span class="line">      controllers_dir = dir || &apos;controllers&apos;, // 如果不传参数，扫描目录默认为&apos;controllers&apos;</span><br><span class="line">      router = require(&apos;koa-router&apos;)();</span><br><span class="line">  addControllers(router, controllers_dir);</span><br><span class="line">  return router.routes();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这样一来，我们在app.js的代码又简化了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">// 导入controller middleware:</span><br><span class="line">const controller = require(&apos;./controller&apos;);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">// 使用middleware:</span><br><span class="line">app.use(controller());</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>经过重新整理后的工程url2-koa目前具备非常好的模块化，所有处理URL的函数按功能组存放在controllers目录，今后我们也只需要不断往这个目录下加东西就可以了，app.js保持不变。</p>
+<h1 id="五、使用Nunjucks模板引擎"><a href="#五、使用Nunjucks模板引擎" class="headerlink" title="五、使用Nunjucks模板引擎"></a>五、使用Nunjucks模板引擎</h1><p>模板引擎最常见的输出就是输出网页，也就是HTML文本。当然，也可以输出任意格式的文本，比如Text，XML，Markdown等等。<br>有同学要问了：既然JavaScript的模板字符串可以实现模板功能，那为什么我们还需要另外的模板引擎？<br>因为JavaScript的模板字符串必须写在JavaScript代码中，要想写出新浪首页这样复杂的页面，是非常困难的。<br>输出HTML有几个特别重要的问题需要考虑：</p>
+<h4 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h4><p>对特殊字符要转义，避免受到XSS攻击。比如，如果变量name的值不是小明，而是小明<script>...</script>，模板引擎输出的HTML到了浏览器，就会自动执行恶意JavaScript代码。</p>
+<h4 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h4><p>对不同类型的变量要格式化，比如，货币需要变成12,345.00这样的格式，日期需要变成2016-01-01这样的格式。</p>
+<h4 id="简单逻辑"><a href="#简单逻辑" class="headerlink" title="简单逻辑"></a>简单逻辑</h4><p>模板还需要能执行一些简单逻辑，比如，要按条件输出内容，需要if实现如下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; name &#125;&#125;同学，</span><br><span class="line">&#123;% if score &gt;= 90 %&#125;</span><br><span class="line">    成绩优秀，应该奖励</span><br><span class="line">&#123;% elif score &gt;=60 %&#125;</span><br><span class="line">    成绩良好，继续努力</span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">    不及格，建议回家打屁股</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以，我们需要一个功能强大的模板引擎，来完成页面输出的功能。</p>
+<h4 id="Nunjucks"><a href="#Nunjucks" class="headerlink" title="Nunjucks"></a>Nunjucks</h4><p>我们选择Nunjucks作为模板引擎。Nunjucks是Mozilla开发的一个纯JavaScript编写的模板引擎，既可以用在Node环境下，又可以运行在浏览器端。但是，主要还是运行在Node环境下，因为浏览器端有更好的模板解决方案，例如MVVM框架。</p>
+<p>虽然模板引擎内部可能非常复杂，但是使用一个模板引擎是非常简单的，因为本质上我们只需要构造这样一个函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function render(view, model) &#123;</span><br><span class="line">    // TODO:...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，view是模板的名称（又称为视图），因为可能存在多个模板，需要选择其中一个。model就是数据，在JavaScript中，它就是一个简单的Object。render函数返回一个字符串，就是模板的输出。</p>
+<p>下面我们来使用Nunjucks这个模板引擎来编写几个HTML模板，并且用实际数据来渲染模板并获得最终的HTML输出。</p>
+<p>我们创建一个use-nunjucks的VS Code工程结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">use-nunjucks/</span><br><span class="line">|</span><br><span class="line">+- views/</span><br><span class="line">|  |</span><br><span class="line">|  +- hello.html &lt;-- HTML模板文件</span><br><span class="line">|</span><br><span class="line">+- app.js &lt;-- 入口js</span><br><span class="line">|</span><br><span class="line">+- package.json &lt;-- 项目描述文件</span><br><span class="line">|</span><br><span class="line">+- node_modules/ &lt;-- npm安装的所有依赖包</span><br></pre></td></tr></table></figure>
+
+<p>其中，模板文件存放在views目录中。</p>
+<p>我们先在package.json中添加nunjucks的依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;nunjucks&quot;: &quot;2.4.2&quot;</span><br></pre></td></tr></table></figure>
+
+<p>注意，模板引擎是可以独立使用的，并不需要依赖koa。用npm install安装所有依赖包。</p>
+<p>紧接着，我们要编写使用Nunjucks的函数render。怎么写？方法是查看<a href="http://mozilla.github.io/nunjucks/" target="_blank" rel="noopener">Nunjucks</a>的官方文档，仔细阅读后，在app.js中编写代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">const nunjucks = require(&apos;nunjucks&apos;);</span><br><span class="line"></span><br><span class="line">function createEnv(path, opts) &#123;</span><br><span class="line">    var</span><br><span class="line">        autoescape = opts.autoescape === undefined ? true : opts.autoescape,</span><br><span class="line">        noCache = opts.noCache || false,</span><br><span class="line">        watch = opts.watch || false,</span><br><span class="line">        throwOnUndefined = opts.throwOnUndefined || false,</span><br><span class="line">        env = new nunjucks.Environment(</span><br><span class="line">            new nunjucks.FileSystemLoader(&apos;views&apos;, &#123;</span><br><span class="line">                noCache: noCache,</span><br><span class="line">                watch: watch,</span><br><span class="line">            &#125;), &#123;</span><br><span class="line">                autoescape: autoescape,</span><br><span class="line">                throwOnUndefined: throwOnUndefined</span><br><span class="line">            &#125;);</span><br><span class="line">    if (opts.filters) &#123;</span><br><span class="line">        for (var f in opts.filters) &#123;</span><br><span class="line">            env.addFilter(f, opts.filters[f]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return env;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var env = createEnv(&apos;views&apos;, &#123;</span><br><span class="line">    watch: true,</span><br><span class="line">    filters: &#123;</span><br><span class="line">        hex: function (n) &#123;</span><br><span class="line">            return &apos;0x&apos; + n.toString(16);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>变量env就表示Nunjucks模板引擎对象，它有一个render(view, model)方法，正好传入view和model两个参数，并返回字符串。</p>
+<p>创建env需要的参数可以查看文档获知。我们用autoescape = opts.autoescape &amp;&amp; true这样的代码给每个参数加上默认值，最后使用new nunjucks.FileSystemLoader(‘views’)创建一个文件系统加载器，从views目录读取模板。</p>
+<p>我们编写一个hello.html模板文件，放到views目录下，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;Hello &#123;&#123; name &#125;&#125;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们就可以用下面的代码来渲染这个模板：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = env.render(&apos;hello.html&apos;, &#123; name: &apos;小明&apos; &#125;);</span><br><span class="line">console.log(s);</span><br></pre></td></tr></table></figure>
+
+<p>获得输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;Hello 小明&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>咋一看，这和使用JavaScript模板字符串没啥区别嘛。不过，试试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = env.render(&apos;hello.html&apos;, &#123; name: &apos;&lt;script&gt;alert(&quot;小明&quot;)&lt;/script&gt;&apos; &#125;);</span><br><span class="line">console.log(s);</span><br></pre></td></tr></table></figure>
+
+<p>获得输出如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;Hello &amp;lt;script&amp;gt;alert(&quot;小明&quot;)&amp;lt;/script&amp;gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样就避免了输出恶意脚本。</p>
+<p>此外，可以使用Nunjucks提供的功能强大的tag，编写条件判断、循环等功能，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 循环输出名字 --&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h3&gt;Fruits List&lt;/h3&gt;</span><br><span class="line">    &#123;% for f in fruits %&#125;</span><br><span class="line">    &lt;p&gt;&#123;&#123; f &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Nunjucks模板引擎最强大的功能在于模板的继承。仔细观察各种网站可以发现，网站的结构实际上是类似的，头部、尾部都是固定格式，只有中间页面部分内容不同。如果每个模板都重复头尾，一旦要修改头部或尾部，那就需要改动所有模板。</p>
+<p>更好的方式是使用继承。先定义一个基本的网页框架base.html：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;&lt;body&gt;</span><br><span class="line">&#123;% block header %&#125; &lt;h3&gt;Unnamed&lt;/h3&gt; &#123;% endblock %&#125;</span><br><span class="line">&#123;% block body %&#125; &lt;div&gt;No body&lt;/div&gt; &#123;% endblock %&#125;</span><br><span class="line">&#123;% block footer %&#125; &lt;div&gt;copyright&lt;/div&gt; &#123;% endblock %&#125;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>base.html定义了三个可编辑的块，分别命名为header、body和footer。子模板可以有选择地对块进行重新定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &apos;base.html&apos; %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block header %&#125;&lt;h1&gt;&#123;&#123; header &#125;&#125;&lt;/h1&gt;&#123;% endblock %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block body %&#125;&lt;p&gt;&#123;&#123; body &#125;&#125;&lt;/p&gt;&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们对子模板进行渲染：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(env.render(&apos;extend.html&apos;, &#123;</span><br><span class="line">    header: &apos;Hello&apos;,</span><br><span class="line">    body: &apos;bla bla bla...&apos;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+<p>输出HTML如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Hello&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;bla bla bla...&lt;/p&gt;</span><br><span class="line">&lt;div&gt;copyright&lt;/div&gt; &lt;-- footer没有重定义，所以仍使用父模板的内容</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><p>最后我们要考虑一下Nunjucks的性能。</p>
+<p>对于模板渲染本身来说，速度是非常非常快的，因为就是拼字符串嘛，纯CPU操作。</p>
+<p>性能问题主要出现在从文件读取模板内容这一步。这是一个IO操作，在Node.js环境中，我们知道，单线程的JavaScript最不能忍受的就是同步IO，但Nunjucks默认就使用同步IO读取模板文件。</p>
+<p>好消息是Nunjucks会缓存已读取的文件内容，也就是说，模板文件最多读取一次，就会放在内存中，后面的请求是不会再次读取文件的，只要我们指定了noCache: false这个参数。</p>
+<p>在开发环境下，可以关闭cache，这样每次重新加载模板，便于实时修改模板。在生产环境下，一定要打开cache，这样就不会有性能问题。</p>
+<p>Nunjucks也提供了异步读取的方式，但是这样写起来很麻烦，有简单的写法我们就不会考虑复杂的写法。保持代码简单是可维护性的关键。</p>
+<h1 id="六、使用MVC"><a href="#六、使用MVC" class="headerlink" title="六、使用MVC"></a>六、使用MVC</h1><p>我们已经可以用koa处理不同的URL，还可以用Nunjucks渲染模板。现在，是时候把这两者结合起来了！</p>
+<p>当用户通过浏览器请求一个URL时，koa将调用某个异步函数处理该URL。在这个异步函数内部，我们用一行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.render(&apos;home.html&apos;, &#123; name: &apos;Michael&apos; &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>通过Nunjucks把数据用指定的模板渲染成HTML，然后输出给浏览器，用户就可以看到渲染后的页面了。</p>
+<p>这就是传说中的MVC：Model-View-Controller，中文名“模型-视图-控制器”。</p>
+<p>异步函数是C：Controller，Controller负责业务逻辑，比如检查用户名是否存在，取出用户信息等等；</p>
+<p>包含变量的模板就是V：View，View负责显示逻辑，通过简单地替换一些变量，View最终输出的就是用户看到的HTML。</p>
+<p>MVC中的Model在哪？Model是用来传给View的，这样View在替换变量的时候，就可以从Model中取出相应的数据。</p>
+<p>上面的例子中，Model就是一个JavaScript对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; name: &apos;Michael&apos; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面，我们根据原来的项目创建工程，把koa2、Nunjucks整合起来，然后，把原来直接输出字符串的方式，改为ctx.render(view, model)的方式。</p>
+<p>工程结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">view-koa/</span><br><span class="line">|</span><br><span class="line">+- controllers/ &lt;-- Controller</span><br><span class="line">|</span><br><span class="line">+- views/ &lt;-- html模板文件</span><br><span class="line">|</span><br><span class="line">+- static/ &lt;-- 静态资源文件</span><br><span class="line">|</span><br><span class="line">+- controller.js &lt;-- 扫描注册Controller</span><br><span class="line">|</span><br><span class="line">+- app.js &lt;-- 使用koa的js</span><br><span class="line">|</span><br><span class="line">+- package.json &lt;-- 项目描述文件</span><br><span class="line">|</span><br><span class="line">+- node_modules/ &lt;-- npm安装的所有依赖包</span><br></pre></td></tr></table></figure>
+
+<p>先用npm install安装依赖包。</p>
+<p>然后，我们准备编写以下两个Controller：</p>
+<h4 id="处理首页-GET"><a href="#处理首页-GET" class="headerlink" title="处理首页 GET /"></a>处理首页 GET /</h4><p>我们定义一个async函数处理首页URL/：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">async (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.render(&apos;index.html&apos;, &#123;</span><br><span class="line">        title: &apos;Welcome&apos;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意到koa并没有在ctx对象上提供render方法，这里我们假设应该这么使用，这样，我们在编写Controller的时候，最后一步调用ctx.render(view, model)就完成了页面输出。</p>
+<h4 id="处理登录请求-POST-signin"><a href="#处理登录请求-POST-signin" class="headerlink" title="处理登录请求 POST /signin"></a>处理登录请求 POST /signin</h4><p>我们再定义一个async函数处理登录请求/signin：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">async (ctx, next) =&gt; &#123;</span><br><span class="line">    var</span><br><span class="line">        email = ctx.request.body.email || &apos;&apos;,</span><br><span class="line">        password = ctx.request.body.password || &apos;&apos;;</span><br><span class="line">    if (email === &apos;admin@example.com&apos; &amp;&amp; password === &apos;123456&apos;) &#123;</span><br><span class="line">        // 登录成功:</span><br><span class="line">        ctx.render(&apos;signin-ok.html&apos;, &#123;</span><br><span class="line">            title: &apos;Sign In OK&apos;,</span><br><span class="line">            name: &apos;Mr Node&apos;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // 登录失败:</span><br><span class="line">        ctx.render(&apos;signin-failed.html&apos;, &#123;</span><br><span class="line">            title: &apos;Sign In Failed&apos;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于登录请求是一个POST，我们就用ctx.request.body.<name>拿到POST请求的数据，并给一个默认值。</name></p>
+<p>登录成功时我们用signin-ok.html渲染，登录失败时我们用signin-failed.html渲染，所以，我们一共需要以下3个View：</p>
+<ul>
+<li>base.html</li>
+<li>signin-ok.html</li>
+<li>signin-failed.html</li>
+</ul>
+<h4 id="集成Nunjucks"><a href="#集成Nunjucks" class="headerlink" title="集成Nunjucks"></a>集成Nunjucks</h4><p>集成Nunjucks实际上也是编写一个middleware，这个middleware的作用是给ctx对象绑定一个render(view, model)的方法，这样，后面的Controller就可以调用这个方法来渲染模板了。</p>
+<p>我们创建一个templating.js来实现这个middleware：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">const nunjucks = require(&apos;nunjucks&apos;);</span><br><span class="line"></span><br><span class="line">function createEnv(path, opts) &#123;</span><br><span class="line">    var</span><br><span class="line">        autoescape = opts.autoescape === undefined ? true : opts.autoescape,</span><br><span class="line">        noCache = opts.noCache || false,</span><br><span class="line">        watch = opts.watch || false,</span><br><span class="line">        throwOnUndefined = opts.throwOnUndefined || false,</span><br><span class="line">        env = new nunjucks.Environment(</span><br><span class="line">            new nunjucks.FileSystemLoader(path || &apos;views&apos;, &#123;</span><br><span class="line">                noCache: noCache,</span><br><span class="line">                watch: watch,</span><br><span class="line">            &#125;), &#123;</span><br><span class="line">                autoescape: autoescape,</span><br><span class="line">                throwOnUndefined: throwOnUndefined</span><br><span class="line">            &#125;);</span><br><span class="line">    if (opts.filters) &#123;</span><br><span class="line">        for (var f in opts.filters) &#123;</span><br><span class="line">            env.addFilter(f, opts.filters[f]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return env;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function templating(path, opts) &#123;</span><br><span class="line">    // 创建Nunjucks的env对象:</span><br><span class="line">    var env = createEnv(path, opts);</span><br><span class="line">    return async (ctx, next) =&gt; &#123;</span><br><span class="line">        // 给ctx绑定render函数:</span><br><span class="line">        ctx.render = function (view, model) &#123;</span><br><span class="line">            // 把render后的内容赋值给response.body:</span><br><span class="line">            ctx.response.body = env.render(view, Object.assign(&#123;&#125;, ctx.state || &#123;&#125;, model || &#123;&#125;));</span><br><span class="line">            // 设置Content-Type:</span><br><span class="line">            ctx.response.type = &apos;text/html&apos;;</span><br><span class="line">        &#125;;</span><br><span class="line">        // 继续处理请求:</span><br><span class="line">        await next();</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = templating;</span><br></pre></td></tr></table></figure>
+
+<p>注意到createEnv()函数和前面使用Nunjucks时编写的函数是一模一样的。我们主要关心tempating()函数，它会返回一个middleware，在这个middleware中，我们只给ctx“安装”了一个render()函数，其他什么事情也没干，就继续调用下一个middleware。</p>
+<p>使用的时候，我们在app.js添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const isProduction = process.env.NODE_ENV === &apos;production&apos;;</span><br><span class="line"></span><br><span class="line">app.use(templating(&apos;views&apos;, &#123;</span><br><span class="line">    noCache: !isProduction,</span><br><span class="line">    watch: !isProduction</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+<p>这里我们定义了一个常量isProduction，它判断当前环境是否是production环境。如果是，就使用缓存，如果不是，就关闭缓存。在开发环境下，关闭缓存后，我们修改View，可以直接刷新浏览器看到效果，否则，每次修改都必须重启Node程序，会极大地降低开发效率。</p>
+<p>Node.js在全局变量process中定义了一个环境变量env.NODE_ENV，为什么要使用该环境变量？因为我们在开发的时候，环境变量应该设置为’development’，而部署到服务器时，环境变量应该设置为’production’。在编写代码的时候，要根据当前环境作不同的判断。</p>
+<p>注意：生产环境上必须配置环境变量NODE_ENV = ‘production’，而开发环境不需要配置，实际上NODE_ENV可能是undefined，所以判断的时候，不要用NODE_ENV === ‘development’。</p>
+<p>这是因为在生产环境下，静态文件是由部署在最前面的反向代理服务器（如Nginx）处理的，Node程序不需要处理静态文件。而在开发环境下，我们希望koa能顺带处理静态文件，否则，就必须手动配置一个反向代理服务器，这样会导致开发环境非常复杂。</p>
+<h4 id="编写View"><a href="#编写View" class="headerlink" title="编写View"></a>编写View</h4><p>在编写View的时候，非常有必要先编写一个base.html作为骨架，其他模板都继承自base.html，这样，才能大大减少重复工作。</p>
+<p>编写HTML不在本教程的讨论范围之内。这里我们参考Bootstrap的官网简单编写了base.html。</p>
+<p>base.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;description&quot; content=&quot;learn javascript&quot;&gt;</span><br><span class="line">    &lt;title&gt;&#123;&#123; title &#125;&#125;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;header style=&quot;background-color:#6f5499;height: 100px;color: #fff;&quot;&gt;</span><br><span class="line">      header top main</span><br><span class="line">  &lt;/header&gt;</span><br><span class="line">  &#123;% block main %&#125; &#123;% endblock %&#125;</span><br><span class="line">  &lt;footer style=&quot;background-color:#ddd; padding: 20px 0;text-align: center;color: #666;&quot;&gt;</span><br><span class="line">      copy right @2019</span><br><span class="line">  &lt;/footer&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>signin-ok.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &quot;base.html&quot; %&#125; </span><br><span class="line">&#123;% block main %&#125;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;h1&gt;Sign in success!&lt;/h1&gt;</span><br><span class="line">  &lt;div class=&quot;alert alert-danger&quot;&gt; </span><br><span class="line">    &lt;strong&gt;This is post login name: &#123;&#123; title &#125;&#125;&lt;/strong&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &#123;% for f in data %&#125;</span><br><span class="line">      &#123;% if f.age &lt; 10 %&#125;</span><br><span class="line">        &lt;li&gt;postValue: 00000&lt;/li&gt;</span><br><span class="line">      &#123;% elif f.age == 10 %&#125;</span><br><span class="line">        &lt;li&gt;postValue: 10&lt;/li&gt;</span><br><span class="line">      &#123;% else %&#125;</span><br><span class="line">        &lt;li&gt;postValue: &#123;&#123; f.name &#125;&#125;&lt;/li&gt;</span><br><span class="line">      &#123;% endif %&#125;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>一切顺利的话，这个view-koa工程应该可以顺利运行。运行前，我们再检查一下app.js里的middleware的顺序：</p>
+<p>第一个middleware是记录URL以及页面执行时间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.use(async (ctx, next) =&gt; &#123;</span><br><span class="line">    console.log(`Process $&#123;ctx.request.method&#125; $&#123;ctx.request.url&#125;...`);</span><br><span class="line">    var</span><br><span class="line">        start = new Date().getTime(),</span><br><span class="line">        execTime;</span><br><span class="line">    await next();</span><br><span class="line">    execTime = new Date().getTime() - start;</span><br><span class="line">    ctx.response.set(&apos;X-Response-Time&apos;, `$&#123;execTime&#125;ms`);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>第二个middleware解析POST请求：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(bodyParser());</span><br></pre></td></tr></table></figure>
+
+<p>第三个middleware负责给ctx加上render()来使用Nunjucks：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(templating(&apos;view&apos;, &#123;</span><br><span class="line">    noCache: !isProduction,</span><br><span class="line">    watch: !isProduction</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+<p>最后一个middleware处理URL路由：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(controller());</span><br></pre></td></tr></table></figure>
+
+<p>现在，在VS Code中运行代码，不出意外的话，在浏览器输入localhost:3000/，可以看到效果。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.hypo1986.com/blog/2019/09/18/2019-09-18-koa2/" data-id="clc6zltej0004vsx0swmvolvq" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/">es6</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2019/10/22/2019-10-22-vue-element-admin/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue简介及vue-element-amdin框架应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2019/08/05/2019-08-05-javascript-regexp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js正则表达式理解与实例</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+  <section id="comments" class="vcomment">
+  </section>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/感悟/">感悟</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/FormData/" style="font-size: 10px;">FormData</a> <a href="/blog/tags/ReactEchart/" style="font-size: 10px;">ReactEchart</a> <a href="/blog/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/blog/tags/es6/" style="font-size: 20px;">es6</a> <a href="/blog/tags/js/" style="font-size: 10px;">js</a> <a href="/blog/tags/js组件/" style="font-size: 10px;">js组件</a> <a href="/blog/tags/selectionStart/" style="font-size: 10px;">selectionStart</a> <a href="/blog/tags/uniapp/" style="font-size: 10px;">uniapp</a> <a href="/blog/tags/valine/" style="font-size: 10px;">valine</a> <a href="/blog/tags/vue/" style="font-size: 20px;">vue</a> <a href="/blog/tags/webrtc-streamer/" style="font-size: 10px;">webrtc-streamer</a> <a href="/blog/tags/websocket/" style="font-size: 10px;">websocket</a> <a href="/blog/tags/前端感悟/" style="font-size: 10px;">前端感悟</a> <a href="/blog/tags/前端规范/" style="font-size: 10px;">前端规范</a> <a href="/blog/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">六月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2022/12/28/webrtc-streamer/">webrtc-streamer实现网页直播摄像头rstp</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/15/fesharefeeling/">分享和前端的感悟</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/11/handsign/">h5手写签名</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2022/08/10/frontendspecification/">前端开发规范整理</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2021/10/21/weimini-env/">微信小程序环境变量配置方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Hypo.Wang
+      <a class="foot-icp" href="http://beian.miit.gov.cn">京ICP备15045595号-1</a>
+      <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">首页</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/blog/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+  
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  
+  
+    <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+    <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+  <script src="/blog/js/script.js"></script>
+  
+
+  
+  
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+      var GUEST_INFO = ['nick','mail','link'];
+      var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+      });
+      var notify = 'false' == true;
+      var verify = 'false' == true;
+      new Valine({
+          el: '.vcomment',
+          notify: notify,
+          verify: verify,
+          appId: "792fH5y98m6Ti763jlgxgqpQ-gzGzoHsz",
+          appKey: "TtpF8CKsQAMHzqvvpLhU4N1s",
+          placeholder: "请输入",
+          pageSize: '10',
+          avatar: 'mm',
+          lang: 'zh-cn',
+          visitor: 'true'
+      });
+  </script>
+  
+  </div>
+</body>
+</html>

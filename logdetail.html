@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>web家园-海波个人主页</title>
+<meta name="keywords" content="海波个人主页" />
+<meta name="description" content="海波个人主页" />
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/common.css">
+ <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body>
+	<!-- html strat -->
+	<header><img class="logo" src="img/logo.png" /><a class="menu-el" href="javascript:;" /></a></header>
+	<section class="main-wrap">
+        <div class="log-wrap">
+            <h4 class="ml-title"></h4>
+            <div class="ml-date"></div>
+            <article class="ml-text">
+                
+            </article>
+        </div>
+	</section>
+    <section class="back-wrap"><a href="javascript:history.back();" class="m-back">返回上一页</a></section>
+	<footer>CopyRight 2015 Email:wanghaibo1986@126.com <a class="foot-icp" href="http://beian.miit.gov.cn">京ICP备15045595号-1</a></footer>
+
+	<!-- 点击目录 弹层 -->
+    <section class="tm-left-overlay" style="display:none;"></section>
+    <section class="tm-left-dialog" style="">
+        <!--<h4 id="tlDiaClose" class="tld-title"><i class="bsm-next-icon"></i>关闭面板</h4>  -->
+        <div class="tld-text" style="">
+        
+            <div class="left-menu-tpl">
+                <a href="index.html" class="lm-title">首页<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+                <a href="work.html" class="lm-title">工作室<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+                <a href="log.html" class="lm-title">日志<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+                <a href="love.html" class="lm-title">我们<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+                <a href="self.html" class="lm-title">经历<i class="ico-down"></i></a>
+                <div class="lm-line"></div>
+            </div>
+           
+        </div>
+    </section>
+	<!-- html end -->
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript">
+        //日志详情 加载json
+        var logDataRender = {
+            init:function(){
+                this.logWrap = $('.log-wrap');
+                var that = this;
+                $.getJSON("data/list.txt",function(responseData){
+                    if(responseData.success){ 
+                        var indexId = GetQueryString("id") || 0;//地址栏参数
+                        var title = responseData.rows[indexId].title,
+                            date = responseData.rows[indexId].date,
+                            desc = responseData.rows[indexId].desc;
+                        var titleHtml = $('.ml-title',that.logWrap),
+                            dateHtml = $('.ml-date',that.logWrap),
+                            textHtml = $('.ml-text',that.logWrap);  
+                        titleHtml.html(title); 
+                        dateHtml.html(date);
+                        textHtml.html(desc);    
+                    }
+                });
+                    
+            }
+        }
+        //取地址栏参数
+        function GetQueryString(name){
+             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+             var r = window.location.search.substr(1).match(reg);
+             if(r!=null)return  unescape(r[2]); return null;
+        }
+        //渲染数据
+        logDataRender.init();
+    </script>
+</body>
+</html>
